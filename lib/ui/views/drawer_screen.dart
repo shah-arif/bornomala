@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  DrawerScreen({Key? key}) : super(key: key);
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +21,19 @@ class DrawerScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Padding(
-          padding: EdgeInsets.only(left: 20.w, top: 50.h, bottom: 20.h),
+          padding: EdgeInsets.only(left: 20, top: 50, bottom: 20),
           child: Column(
             children: [
               Text(
                 "BornoMala",
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
               Text(
-                "Shah Arif",
-                style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
+                box.read("name"),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300,fontFamily: "kalpurush"),
               ),
               SizedBox(
-                height: 200.h,
+                height: 200,
               ),
               OutlinedButton(onPressed: (){}, child: const Text("Rate Us",style: TextStyle(color: Colors.black),)),
               SizedBox(height: 250,),

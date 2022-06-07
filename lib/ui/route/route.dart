@@ -19,8 +19,10 @@ import 'package:bornomala/ui/views/letter_test/english_small_test.dart';
 import 'package:bornomala/ui/views/letter_test/gonit_bangla_test.dart';
 import 'package:bornomala/ui/views/letter_test/gonit_english_test.dart';
 import 'package:bornomala/ui/views/main_home_screen.dart';
+import 'package:bornomala/ui/views/splash_screen.dart';
 import 'package:get/get.dart';
 
+import '../views/auth_screen.dart';
 import '../views/draw_and_play/bangla_banjon_borno_draw.dart';
 import '../views/draw_and_play/bangla_sorborno_draw.dart';
 import '../views/grid_view/arabic_alphabet_grid.dart';
@@ -28,6 +30,8 @@ import '../views/grid_view/bangla_banjonborno_grid.dart';
 import '../views/grid_view/bangla_sorborno_grid.dart';
 
 const String main_home_page = '/main-home-page-screen';
+const String auth_screen = '/auth-screen';
+const String splash_screen = '/splash-screen';
 const String homepage = '/homepage-screen';
 const String user_info = '/user-info';
 //Subject detailed
@@ -64,6 +68,8 @@ const String arobi_test_screen = '/arobi-test-screen';
 //Control page route flow
 List<GetPage> getPages = [
   GetPage(name: main_home_page, page: ()=>MainHomeScreen()),
+  GetPage(name: auth_screen, page: ()=>AuthScreen()),
+  GetPage(name: splash_screen, page: ()=>SplashScreen()),
   // GetPage(name: homepage, page: ()=>HomePage()),
   //Subject detailed
 

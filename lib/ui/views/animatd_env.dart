@@ -2,30 +2,27 @@ import 'package:bornomala/block/greeting.dart';
 import 'package:bornomala/const/app_color.dart';
 import 'package:bornomala/const/app_string.dart';
 import 'package:bornomala/ui/route/route.dart';
-import 'package:bornomala/ui/views/detailed_screen/arobi_detailed.dart';
-import 'package:bornomala/ui/views/detailed_screen/english_detailed.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widgets/tile.dart';
-import 'detailed_screen/gonit_detailed.dart';
 
 class AnimatedEnv extends StatelessWidget {
   RxInt _currentIndex = 0.obs;
   RxBool drawer = false.obs;
+  final box = GetStorage();
 
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return AnimatedPositioned(
-        top: drawer.value == false ? 0 : 100.h,
-        bottom: drawer.value == false ? 0 : 100.h,
-        left: drawer.value == false ? 0 : 150.w,
-        right: drawer.value == false ? 0 : -150.w,
+        top: drawer.value == false ? 0 : 100,
+        bottom: drawer.value == false ? 0 : 100,
+        left: drawer.value == false ? 0 : 150,
+        right: drawer.value == false ? 0 : -150,
         duration: Duration(milliseconds: 200),
         child: Container(
           decoration: BoxDecoration(
@@ -78,10 +75,11 @@ class AnimatedEnv extends StatelessWidget {
             body: Column(
               children: [
                 Text(
-                  AppString.home_screen_title,
+                  "Hi, "+ box.read("name"),
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    fontFamily: "kalpurush"
                   ),
                 ),
                 Text("Good " + Greeting().greeting()),
@@ -89,7 +87,8 @@ class AnimatedEnv extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(left: 10,right: 10),
-                    child: GridView.count(crossAxisCount: 2,crossAxisSpacing: 5,mainAxisSpacing: 5,children: [
+                    child: GridView.count(
+                    physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),crossAxisCount: 2,crossAxisSpacing: 5,mainAxisSpacing: 5,children: [
                       Tile(
                           subject: AppString.sub_name_bangla,
                           subColor: AppColor.deep_blue,

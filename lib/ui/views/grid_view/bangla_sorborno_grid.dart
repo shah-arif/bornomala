@@ -44,59 +44,54 @@ class _SorbornoGridState extends State<SorbornoGrid> {
   @override
   Widget build(BuildContext context) {
     Random random = Random();
-    return OrientationBuilder(builder: (orientation,context){
-      final isOrintation = orientation == Orientation.portrait;
-      return Scaffold(
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            iconTheme: IconThemeData(color: Colors.black),
-            elevation: 0,
-            title: Text(
-              "স্বরবর্ণ",
-              style: TextStyle(
-                  fontFamily: 'kalpurush',
-                  fontSize: 30,
-                  color: Color(0xffff0000)),
-            ),
-            centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+          title: Text(
+            "স্বরবর্ণ",
+            style: TextStyle(
+                fontFamily: 'kalpurush',
+                fontSize: 30,
+                color: Color(0xffff0000)),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: isOrintation ? 25 : 0,
-                ),
-                Expanded(
-                    child: GridView.builder(
-                        itemCount: AppList.sorborno_list.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: isOrintation ? 3 : 6),
-                        itemBuilder: (context, index) => Container(
-                            height: 100,
-                            width: 100,
-                            child: Card(
-                              elevation: 5,
-                              child: InkWell(
-                                onTap: () {
-                                  srcAudio = AppList.audioLinkSorborno[index];
-                                  audioPlayerState == playerMusic();
-                                },
-                                child: Center(
-                                    child: Text(
-                                      AppList.sorborno_list[index],
-                                      style: TextStyle(
-                                          fontFamily: 'kalpurush',
-                                          fontSize: 50,
-                                          color: AppList.colorList[random
-                                              .nextInt(AppList.colorList.length)]),
-                                    )),
-                              ),
-                            )))),
-              ],
-            ),
-          ));
-    });
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SizedBox(height: 25),
+              Expanded(
+                  child: GridView.builder(
+                      itemCount: AppList.sorborno_list.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3),
+                      itemBuilder: (context, index) => Container(
+                          height: 100,
+                          width: 100,
+                          child: Card(
+                            elevation: 5,
+                            child: InkWell(
+                              onTap: () {
+                                srcAudio = AppList.audioLinkSorborno[index];
+                                audioPlayerState == playerMusic();
+                              },
+                              child: Center(
+                                  child: Text(
+                                AppList.sorborno_list[index],
+                                style: TextStyle(
+                                    fontFamily: 'kalpurush',
+                                    fontSize: 50,
+                                    color: AppList.colorList[random
+                                        .nextInt(AppList.colorList.length)]),
+                              )),
+                            ),
+                          )))),
+            ],
+          ),
+        ));
   }
 }
