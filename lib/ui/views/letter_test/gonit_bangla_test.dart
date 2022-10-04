@@ -93,6 +93,12 @@ class _GonitBanglaTestState extends State<GonitBanglaTest> {
                             Fluttertoast.showToast(msg: "Correct!");
                             srcAudio = "audio/sfx/success.mp3";
                             audioPlayerState == playerMusic();
+                            Future.delayed(Duration(seconds: 2),(){
+                              rng = random.nextInt(10);
+                              // print(rng);
+                              srcAudio = link[rng];
+                              audioPlayerState == playerMusic();
+                            });
                           } else if (rng == null) {
                             Fluttertoast.showToast(
                                 msg: "Press Test Button before");
@@ -102,6 +108,11 @@ class _GonitBanglaTestState extends State<GonitBanglaTest> {
                             Fluttertoast.showToast(msg: "Wrong");
                             srcAudio = "audio/sfx/error.mp3";
                             audioPlayerState == playerMusic();
+                            Future.delayed(Duration(seconds: 2), () {
+                              srcAudio = link[rng];
+                              audioPlayerState == playerMusic();srcAudio = link[rng];
+                              audioPlayerState == playerMusic();
+                            });
                           }
                         },
                         child: Center(
@@ -113,15 +124,41 @@ class _GonitBanglaTestState extends State<GonitBanglaTest> {
               );
             }),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          rng = random.nextInt(10);
-          // print(rng);
-          srcAudio = link[rng];
-          audioPlayerState == playerMusic();
-        },
-        child: Text("Test"),
-      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          CircleAvatar(
+              backgroundColor: Colors.blueGrey,
+              radius: 28,
+              child: IconButton(
+                  onPressed: () {
+                    if(rng == null ){
+                      Fluttertoast.showToast(
+                          msg: "Press Test Button before");
+                      srcAudio = "audio/sfx/pressbutton.mp3";
+                      audioPlayerState == playerMusic();
+                    } else {
+                      srcAudio = link[rng];
+                      audioPlayerState == playerMusic();
+                    }
+                  },
+                  icon: Icon(Icons.repeat,color: Colors.white,))),
+          SizedBox(
+            width: 8,
+          ),
+          CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 28,
+              child: IconButton(
+                  onPressed: () {
+                    rng = random.nextInt(10);
+                    // print(rng);
+                    srcAudio = link[rng];
+                    audioPlayerState == playerMusic();
+                  },
+                  icon: Text("Test",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),))),
+        ],
+      )
     );
   }
 }

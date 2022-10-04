@@ -45,7 +45,7 @@ class GonitDetailed extends StatelessWidget {
                 ExpandedChildren: [
                   SubCardForExpansionTile(
                     bgColor: AppColor.supr_deep_blue,
-                    subCardTilte: "মুখে মখে বলি",
+                    subCardTilte: "মুখে মুখে বলি",
                     titleColor: Colors.white,
                     onTap: ()=>Get.toNamed(gonit_bangla_number_grid_screen),
                   ),
@@ -65,7 +65,7 @@ class GonitDetailed extends StatelessWidget {
                 ExpandedChildren: [
                   SubCardForExpansionTile(
                       bgColor: AppColor.deep_green,
-                      subCardTilte: "মুখে মখে বলি",
+                      subCardTilte: "মুখে মুখে বলি",
                       titleColor: Colors.white,
                       onTap: ()=>Get.toNamed(gonit_english_number_grid_screen)
                   ),

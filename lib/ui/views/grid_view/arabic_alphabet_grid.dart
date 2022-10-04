@@ -71,7 +71,7 @@ class _ArabicAlphabetGridState extends State<ArabicAlphabetGrid> {
                       child: GridView.builder(
                           itemCount: AppList.arabic_letter.length,
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: isOrintation ? 3 : 6),
+                              crossAxisCount: 3),
                           itemBuilder: (context, index) => Container(
                               height: 100,
                               width: 100,

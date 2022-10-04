@@ -18,4 +18,6 @@ class AppString {
   //English detailed
   static const String english_capital_letter = "Capital Letter";
   static const String english_small_letter = "Small Letter";
+  //Terms About Developer
+  static const String about_developer = "";
 }

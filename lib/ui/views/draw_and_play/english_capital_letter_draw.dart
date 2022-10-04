@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:bornomala/block/audioplay.dart';
+import 'package:bornomala/bloc/audioplay.dart';
 import 'package:bornomala/const/app_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

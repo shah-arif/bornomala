@@ -20,6 +20,8 @@ import 'package:bornomala/ui/views/letter_test/gonit_bangla_test.dart';
 import 'package:bornomala/ui/views/letter_test/gonit_english_test.dart';
 import 'package:bornomala/ui/views/main_home_screen.dart';
 import 'package:bornomala/ui/views/splash_screen.dart';
+import 'package:bornomala/ui/views/terms/privacy_policy_screen.dart';
+import 'package:bornomala/ui/views/terms/terms_conditions_screen.dart';
 import 'package:get/get.dart';
 
 import '../views/auth_screen.dart';
@@ -34,6 +36,10 @@ const String auth_screen = '/auth-screen';
 const String splash_screen = '/splash-screen';
 const String homepage = '/homepage-screen';
 const String user_info = '/user-info';
+
+//Privacy Conditions
+const String privacy_policy_screen = '/privacy-policy-screen';
+const String terms_condition_screen = '/terms-condition-screen';
 //Subject detailed
 const String bangla_detailed_screen = '/bangla-detailed-screen';
 const String english_detailed_screen = '/english-detailed-screen';
@@ -71,7 +77,9 @@ List<GetPage> getPages = [
   GetPage(name: auth_screen, page: ()=>AuthScreen()),
   GetPage(name: splash_screen, page: ()=>SplashScreen()),
   // GetPage(name: homepage, page: ()=>HomePage()),
-  //Subject detailed
+  //Privacy Conditions
+  GetPage(name: privacy_policy_screen, page: ()=>PrivacyPolicyScreen()),
+  GetPage(name: terms_condition_screen, page: ()=>TermsCoditionsScreen()),
 
   //detailed screen
   GetPage(name: bangla_detailed_screen, page: ()=>BanglaDetailed()),

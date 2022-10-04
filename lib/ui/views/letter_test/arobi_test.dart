@@ -23,6 +23,7 @@ class _ArobiTestState extends State<ArobiTest> {
   PlayerState audioPlayerState = PlayerState.PAUSED;
   late AudioCache audioCache;
   var srcAudio = "";
+
   playerMusic() async {
     await audioCache.play(srcAudio);
   }
@@ -45,6 +46,7 @@ class _ArobiTestState extends State<ArobiTest> {
 
   @override
   Widget build(BuildContext context) {
+    // RxInt score = 0.obs;
     Map map = AppMap().arobi_map;
     List list = map.entries.toList();
     var shuffleList = list..shuffle();
@@ -55,73 +57,117 @@ class _ArobiTestState extends State<ArobiTest> {
     Random random = Random();
     var rng;
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          Get.arguments,
-          style: AppBarStyle().appBarStyle,
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            Get.arguments,
+            style: AppBarStyle().appBarStyle,
+          ),
+          actions: [
+            // Obx(() {
+            //   return Center(child: Text(score.value.toString(),style: TextStyle(color: Colors.black,fontSize: 18),));
+            // }),
+            IconButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                icon: Icon(
+                  Icons.refresh,
+                  color: Colors.black,
+                )),
+          ],
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {});
-              },
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.black,
-              )),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-            itemCount: 12,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 2, crossAxisSpacing: 2, crossAxisCount: 3),
-            itemBuilder: (context, index) {
-              return Container(
-                child: Card(
-                    child: InkWell(
-                        onTap: () {
-                          // print(index);
-                          // print(rng);
-                          // srcAudio = link[index];
-                          // audioPlayerState == playerMusic();
-                          if (index == rng) {
-                            Fluttertoast.showToast(msg: "Correct!");
-                            srcAudio = "audio/sfx/success.mp3";
-                            audioPlayerState == playerMusic();
-                          } else if (rng == null) {
-                            Fluttertoast.showToast(
-                                msg: "Press Test Button before");
-                            srcAudio = "audio/sfx/pressbutton.mp3";
-                            audioPlayerState == playerMusic();
-                          } else {
-                            Fluttertoast.showToast(msg: "Wrong");
-                            srcAudio = "audio/sfx/error.mp3";
-                            audioPlayerState == playerMusic();
-                          }
-                        },
-                        child: Center(
-                            child: Text(
-                          letter[index],
-                          style:
-                              TextStyle(fontSize: 50, fontFamily: "kalpurush",color: AppList.colorList[random.nextInt(10)]),
-                        )))),
-              );
-            }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          rng = random.nextInt(10);
-          // print(rng);
-          srcAudio = link[rng];
-          audioPlayerState == playerMusic();
-        },
-        child: Text("Test"),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView.builder(
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 2, crossAxisSpacing: 2, crossAxisCount: 3),
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Card(
+                      child: InkWell(
+                          onTap: () {
+                            // print(index);
+                            // print(rng);
+                            // srcAudio = link[index];
+                            // audioPlayerState == playerMusic();
+                            if (index == rng) {
+                              // score+1;
+                              Fluttertoast.showToast(msg: "Correct!");
+                              srcAudio = "audio/sfx/success.mp3";
+                              audioPlayerState == playerMusic();
+                              Future.delayed(Duration(seconds: 2), () {
+                                rng = random.nextInt(10);
+                                // print(rng);
+                                srcAudio = link[rng];
+                                audioPlayerState == playerMusic();
+                              });
+                            } else if (rng == null) {
+                              Fluttertoast.showToast(
+                                  msg: "Press Test Button before");
+                              srcAudio = "audio/sfx/pressbutton.mp3";
+                              audioPlayerState == playerMusic();
+                            } else {
+                              Fluttertoast.showToast(msg: "Wrong");
+                              srcAudio = "audio/sfx/error.mp3";
+                              audioPlayerState == playerMusic();
+                              Future.delayed(Duration(seconds: 2), () {
+                                srcAudio = link[rng];
+                                audioPlayerState == playerMusic();srcAudio = link[rng];
+                                audioPlayerState == playerMusic();
+                              });
+                            }
+                          },
+                          child: Center(
+                              child: Text(
+                                letter[index],
+                                style: TextStyle(
+                                    fontSize: 50,
+                                    fontFamily: "kalpurush",
+                                    color: AppList.colorList[random.nextInt(
+                                        10)]),
+                              )))),
+                );
+              }),
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CircleAvatar(
+                backgroundColor: Colors.blueGrey,
+                radius: 28,
+                child: IconButton(
+                    onPressed: () {
+                      if (rng == null) {
+                        Fluttertoast.showToast(
+                            msg: "Press Test Button before");
+                        srcAudio = "audio/sfx/pressbutton.mp3";
+                        audioPlayerState == playerMusic();
+                      } else {
+                        srcAudio = link[rng];
+                        audioPlayerState == playerMusic();
+                      }
+                    },
+                    icon: Icon(Icons.repeat, color: Colors.white,))),
+            SizedBox(
+              width: 8,
+            ),
+            CircleAvatar(
+                backgroundColor: Colors.red,
+                radius: 28,
+                child: IconButton(
+                    onPressed: () {
+                      rng = random.nextInt(4);
+                      // print(rng);
+                      srcAudio = link[rng];
+                      audioPlayerState == playerMusic();
+                    },
+                    icon: Text("Test", style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold,),))),
+          ],
+        ));
   }
 }

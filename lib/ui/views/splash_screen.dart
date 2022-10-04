@@ -13,8 +13,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final box = GetStorage();
   Future chooseScreen()async{
-    var nameExist = box.read("name");
-    if(nameExist == null) {
+    var agreeEx = box.read("agree");
+    if(agreeEx == null) {
       Get.offAndToNamed(auth_screen);
     }
     else {
